@@ -1,3 +1,4 @@
+
 /* Copyright (C) 2020 Yusuf Usta.
 recodded by afnanplk
 new work type by afnanplk
@@ -12,10 +13,10 @@ const Config = require('../config');
 
 const Language = require('../language');
 const Lang = Language.getString('greetings');
-
+if (Config.STANDPLK == 'off' || Config.STANDPLK == 'OFF') {
 if (Config.WORKTYPE == 'private') {
 
-MyPnky.addCommand({pattern: 'welcome$', fromMe: true, desc: Lang.WELCOME_DESC}, (async (message, match) => {
+MyPnky.addCommand({pattern: 'welcome$', fromMe: true,plkadmin: true,dontAddCommandList: true, desc: Lang.WELCOME_DESC}, (async (message, match) => {
     var hg = await sql.getMessage(message.jid);
     if (hg === false) {
         await message.client.sendMessage(message.jid,Lang.NOT_SET_WELCOME,MessageType.text);
@@ -34,7 +35,7 @@ MyPnky.addCommand({pattern: 'welcome (.*)', fromMe: true, dontAddCommandList: tr
     }
 }));
 
-MyPnky.addCommand({pattern: 'goodbye$', fromMe: true, desc: Lang.GOODBYE_DESC}, (async (message, match) => {
+MyPnky.addCommand({pattern: 'goodbye$', fromMe: true,plkadmin: true,dontAddCommandList: true, desc: Lang.GOODBYE_DESC}, (async (message, match) => {
     var hg = await sql.getMessage(message.jid, 'goodbye');
     if (hg === false) {
         await message.client.sendMessage(message.jid,Lang.NOT_SET_GOODBYE,MessageType.text)
@@ -57,7 +58,7 @@ MyPnky.addCommand({pattern: 'goodbye (.*)', fromMe: true, dontAddCommandList: tr
 else if (Config.WORKTYPE == 'public') {
     
     
-MyPnky.addCommand({pattern: 'welcome$', fromMe: true, desc: Lang.WELCOME_DESC}, (async (message, match) => {
+MyPnky.addCommand({pattern: 'welcome$', fromMe: true,plkadmin: true,dontAddCommandList: true, desc: Lang.WELCOME_DESC}, (async (message, match) => {
     var hg = await sql.getMessage(message.jid);
     if (hg === false) {
         await message.client.sendMessage(message.jid,Lang.NOT_SET_WELCOME,MessageType.text);
@@ -76,7 +77,7 @@ MyPnky.addCommand({pattern: 'welcome (.*)', fromMe: true, dontAddCommandList: tr
     }
 }));
 
-MyPnky.addCommand({pattern: 'goodbye$', fromMe: true, desc: Lang.GOODBYE_DESC}, (async (message, match) => {
+MyPnky.addCommand({pattern: 'goodbye$', fromMe: true,plkadmin: true,dontAddCommandList: true, desc: Lang.GOODBYE_DESC}, (async (message, match) => {
     var hg = await sql.getMessage(message.jid, 'goodbye');
     if (hg === false) {
         await message.client.sendMessage(message.jid,Lang.NOT_SET_GOODBYE,MessageType.text)
@@ -113,7 +114,7 @@ async function checkImAdmin(message, user = message.client.user.jid) {
     return sonuc.includes(true);
 }
     
-    MyPnky.addCommand({pattern: 'welcome$', fromMe: false, desc: Lang.WELCOME_DESC}, (async (message, match) => {
+    MyPnky.addCommand({pattern: 'welcome$', fromMe: false, plkadmin: true,dontAddCommandList: true, desc: Lang.WELCOME_DESC}, (async (message, match) => {
     var us = await checkUsAdmin(message);
     if (!us) return await message.client.sendMessage(message.jid,Lang.PLKADMIN ,MessageType.text ,{quoted: message.data });
     var hg = await sql.getMessage(message.jid);
@@ -136,7 +137,7 @@ MyPnky.addCommand({pattern: 'welcome (.*)', fromMe: false, dontAddCommandList: t
     }
 }));
 
-MyPnky.addCommand({pattern: 'goodbye$', fromMe: false, desc: Lang.GOODBYE_DESC}, (async (message, match) => {
+MyPnky.addCommand({pattern: 'goodbye$', fromMe: false, plkadmin: true,dontAddCommandList: true, desc: Lang.GOODBYE_DESC}, (async (message, match) => {
     var us = await checkUsAdmin(message);
     if (!us) return await message.client.sendMessage(message.jid,Lang.PLKADMIN,MessageType.text ,{quoted: message.data });
     var hg = await sql.getMessage(message.jid, 'goodbye');
@@ -158,4 +159,5 @@ MyPnky.addCommand({pattern: 'goodbye (.*)', fromMe: false, dontAddCommandList: t
         return await message.client.sendMessage(message.jid,Lang.GOODBYE_SETTED,MessageType.text)
     }
 }));
+}
 }

@@ -128,7 +128,7 @@ if (config.LANG == 'RU') {
     dlang_input = 'Обработанный текст:'
 }
 
-
+if (config.STANDPLK == 'off' || config.STANDPLK == 'OFF') {
 if (config.WORKTYPE == 'private') {
 
     MyPnky.addCommand({pattern: 'trt(?: |$)(\\S*) ?(\\S*)', desc: Lang.TRANSLATE_DESC, usage: Lang.TRANSLATE_USAGE, fromMe: true}, (async (message, match) => {
@@ -856,7 +856,7 @@ else if (config.WORKTYPE == 'public') {
                 writer.addTag();
 
                 reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_SONG,MessageType.text);
-                await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.audio, {quoted: message.data , mimetype: Mimetype.mp4Audio,contextInfo: { forwardingScore: 2, isForwarded: true}, ptt: false});
+                await message.client.sendMessage(message.jid,Buffer.from(writer.arrayBuffer), MessageType.audio, {quoted: message.data , mimetype: Mimetype.mp4Audio, ptt: false});
             });
     }));
 
@@ -883,7 +883,7 @@ else if (config.WORKTYPE == 'public') {
 
         yt.on('end', async () => {
             reply = await message.client.sendMessage(message.jid,Lang.UPLOADING_VIDEO,MessageType.text);
-            await message.client.sendMessage(message.jid,fs.readFileSync('./' + VID + '.mp4'), MessageType.video, {quoted: message.data ,contextInfo: { forwardingScore: 2, isForwarded: true}, mimetype: Mimetype.mp4});
+            await message.client.sendMessage(message.jid,fs.readFileSync('./' + VID + '.mp4'), MessageType.video, {quoted: message.data ,mimetype: Mimetype.mp4});
         });
     }));
 
@@ -920,39 +920,26 @@ else if (config.WORKTYPE == 'public') {
         await reply.delete();
     }));
 
-     MyPnky.addCommand({pattern: 'img ?(.*)', fromMe: false, desc: Lang.IMG_DESC}, (async (message, match) => { 
-
+     
+    MyPnky.addCommand({pattern: 'img ?(.*)', fromMe: false, desc: Lang.IMG_DESC}, (async (message, match) => { 
         if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);
-        gis(match[1], async (error, result) => {
-            for (var i = 0; i < (result.length < 5 ? result.length : 5); i++) {
+        if (!match[1].includes(' & ')) return await message.client.sendMessage(message.jid,' ```please enter the number of images you need \n\n example :``` *name of image* & *number of image* ',MessageType.text);
+        if (match[1].includes(' & ')) { var split = match[1].split(' & '), afnn = split[1], plkk = split[0]
+        if (afnn > 10 ) return await message.client.sendMessage(message.jid,'```please decrease the number of images```',MessageType.text);
+            gis(plkk, async (error, result) => {
+            for (var i = 0; i < (result.length < afnn ? result.length : afnn); i++) {
                 var get = got(result[i].url, {https: {rejectUnauthorized: false}});
                 var stream = get.buffer();
                 
                 stream.then(async (image) => {
                     await message.client.sendMessage(message.jid,image, MessageType.image);
-                });
+                }); //recoded by afnanplk
             }
 
-            message.reply(Lang.IMG.format((result.length < 5 ? result.length : 5), match[1]));
+            message.reply(Lang.IMG.format((result.length < afnn ? result.length : afnn), plkk));
         });
+      }                                   
     }));
-    
-     MyPnky.addCommand({pattern: '2img ?(.*)', fromMe: false, desc: Lang.IMG_DESC}, (async (message, match) => { 
-
-        if (match[1] === '') return await message.client.sendMessage(message.jid,Lang.NEED_WORDS,MessageType.text);
-        gis(match[1], async (error, result) => {
-            for (var i = 0; i < (result.length < 2 ? result.length : 2); i++) {
-                var get = got(result[i].url, {https: {rejectUnauthorized: false}});
-                var stream = get.buffer();
-                
-                stream.then(async (image) => {
-                    await message.client.sendMessage(message.jid,image, MessageType.image);
-                });
-            }
-
-            message.reply(Lang.IMG.format((result.length < 2 ? result.length : 2), match[1]));
-        });
-    })); 
 
     MyPnky.addCommand({pattern: 'isong ?(.*)', fromMe: false, desc: Lang.ISONG_DESC}, (async (message, match) => { 
 
@@ -1294,3 +1281,5 @@ await message.client.sendMessage(message.jid, {displayname: "PINKY", vcard: p_lk
     }));
     
 }
+}
+

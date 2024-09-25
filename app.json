@@ -1,7 +1,7 @@
 {
-    "name": "PINKY-V2 BY AFNAN PLK",
+    "name": "PINKY BY AFNAN PLK", 
     "description": "pinky bot - re-edited from asena. World’s first UserBot made for WhatsApp.",
-    "logo": "https://avatars.githubusercontent.com/u/83832372?v=4",
+    "logo": "https://i.imgur.com/zdcqaaG.jpeg",
     "keywords": ["whatsapp", "userbot", "Asena", "WhatsAsena", "bot", "api", "ai"],
     "repository": "https://github.com/afnanplk/Pinky_V2",
     "website":   "under maintenance",
@@ -9,7 +9,7 @@
     "stack": "container",
     "env": {
         "PINKY_SESSION": {
-            "description": "Qr.Js ile oluşturduğunuz özel session kodu. Type here yours Asena Session.",
+            "description": " Type here yours pinky Session.",
             "required": true
         },
         "SUDO": {
@@ -26,92 +26,62 @@
             "required": false,
             "value": "false"
         },
-        "BYE_GIF": {
-            "description": "Fill here any gif link if you selected gif as WEELCOME",
-            "required": false,
-            "value": "false"
-        },
-         "BGM_FILTER": {
-            "description": "If you likes bgm you can write 'true'. Otherwise false",
-            "required": false,
-            "value": "true"
-        },   
-        "ANTİ_LİNK": {
-            "description": "Link Engelleme Sistemi. Link Blocking System.",
-            "required": true,
-            "value": "false"
-        },
-         "STICKER_REPLY": {
-            "description": "if you need Automatic sticker reply type'true'. Otherwise false",
-            "required": false,
-            "value": "true"
-        },  
-         "THERI_KICK_GP": {
-            "description": "will remove members from group if they use bad words given in THERI_LIST_GP , if true ",
-            "required": true,
-            "value": "false"
-        },
-        "NUMBER": {
-            "description": "give your orginal phone number if you wish to add it in .number cmnd ",
-            "required": false
-        },
-         "THERI_KICK_PM": {
-            "description": "will block members if they use bad words given in THERI_LIST_PM , if true ",
-            "required": true,
-            "value": "false"
-        },
-         "THERI_LIST_GP": {
+        "BAD_WORDS": {
             "description": "enter the word you dont allow in your group ",
             "required": true,
             "value": "false"
         },
-         "THERI_LIST_PM": {
-            "description": "enter the words you dont allow in your pm ",
+        "PREFIX": {
+            "description": "work with handler -true , else -false ",
             "required": true,
             "value": "false"
-        },        
+        },
+         "CALLER_BLOCK": {
+            "description": "block when they call you - true , else - false",
+            "required": true,
+            "value": "false"
+        },
+        "BYE_GIF": {
+            "description": "Fill here any gif link if you selected gif as WEELCOME",
+            "required": false,
+            "value": "false"
+        },   
+        "PM_BLOCK": {
+            "description": "block when someone messages you in pm",
+            "required": true,
+            "value": "false"
+        },  
+        "BGM_PM": {
+            "description": "true => activate bgm reply in pm",
+            "required": true,
+            "value": "true"
+        },  
+         "PINKY_PM": {
+            "description": "true => activate talking pinky in pm",
+            "required": true,
+            "value": "true"
+        },  
+        "NUMBER": {
+            "description": "give your orginal phone number if you wish to add it in .number cmnd ",
+            "required": false
+        },      
         "OWNER_NAME": {
             "description": "reply for .owner ! give your details, Use => default, to change back.",
             "required": false,
             "value": "default"
         },    
         "HANDLERS": {
-            "description": "Komutlar için. For commands.",
+            "description": ". For commands.",
             "required": true,
-            "value": "^[.!;]"
-        },
-        "Z_PINKY_AI": {
-            "description": "turn on chat back auto reply pinky (use true to on and fale to off)",
-            "required": true,
-            "value": "true"
-        },
-        "Z_BOT_NAME": {
-            "description": "give a name you disire to give your bot (for auto reply pinkt to identify)",
-            "required": false,
-            "value": "PINKY"
-        },
-        "Z_DEP_NAME": {
-            "description": "bot deployer name make it short  (for auto reply pinkt to identify)",
-            "required": false,
-            "value": "plk"
-        },
-        "Z_BOT_REPLY": {
-            "description": "enter the repply message you want when deployer name is typed by users  (for auto reply pinkt to identify)",
-            "required": false,
-            "value": "i know him he is my creator"
-        },
-        "ALL_LINK_BAN": {
-            "description": "Link Blocking System.- this one blocks all link",
-            "required": true,
-            "value": "false"
+            "value": ".!;"
         },
         "NO_LOG": {
-            "description": "Hata logu görmek istemiyorsanız true yapın. Set true if you don't want to see error log.",
+            "description": " Set true if you don't want to see error log.",
             "required": true,
             "value": "true"
         },
         "SEND_READ": {
-            "description": "Görüldü atmak istiyorsanız true yazın. Write true if you want to throw seen.",
+            "description": " Write true if you want to throw seen.",
             "required": true,
             "value": "true"
         },
@@ -121,21 +91,21 @@
             "value": "PUBLIC BOT"
         },
         "HEROKU": {
-            "description": "Herokuda çalışıyorsa true yazın. If it is running in Heroku, type true.",
+            "description": " If it is running in Heroku, type true.",
             "required": true,
             "value": "true"
         },
          "BOT_NAME": {
             "description": "heading for .list command reply",
             "required": false,
-            "value": "•━━━━╼⤏PINKY BOT⤎╾━━━•"
-        },
+            "value": "•━━━╼⤏PINKY BOT⤎╾━━━•"
+        },      
         "HEROKU_API_KEY": {
-            "description": "Herokuda API Keyiniz. Heroku API Key.",
+            "description": " Heroku API Key.",
             "required": true
         },
         "MUTE_MESSAGE": {
-            "description": "Düzenlenebilir Mute Mesajı. Customizable Mute Message! Use => default, to change back.",
+            "description": ". Customizable Mute Message! Use => default, to change back.",
             "required": false,
             "value": "default"
         },
@@ -144,23 +114,18 @@
             "required": false,
             "value": "false"
         },
-        "TAG_HEADER": {
-            "description": "Heading when taging all",
-            "required": false,
-            "value": "hear me friends"
-        },
         "UNMUTE_MESSAGE": {
-            "description": "Düzenlenebilir Unmute Mesajı. Customizable Unmute Message! Use => default, to change back.",
+            "description": " Customizable Unmute Message! Use => default, to change back.",
             "required": false,
             "value": "default"
         },
         "BLOCK_MESSAGE": {
-            "description": "Düzenlenebilir Block Mesajı. Customizable Block Message! Use => default, to change back.",
+            "description": " Customizable Block Message! Use => default, to change back.",
             "required": false,
             "value": "default"
         },
         "UNBLOCK_MESSAGE": {
-            "description": "Düzenlenebilir Unblock Mesajı. Customizable Unblock Message! Use => default, to change back.",
+            "description": "Customizable Unblock Message! Use => default, to change back.",
             "required": false,
             "value": "default"
         },
@@ -170,22 +135,26 @@
             "value": "private"
         },
         "HEROKU_APP_NAME": {
-            "description": "Herokuda uygulama adı. Heroku APP Name.",
+            "description": "Heroku APP Name.",
             "required": true
         },
         "DEBUG": {
-            "description": "Geliştiricilere özeldir.",
+            "description": "",
             "required": true,
             "value": "false"
         },
         "REMOVE_BG_API_KEY": {
-            "description": "Fotoğrafların arkaplanını kaldırır. https://remove.bg",
+            "description": "https://remove.bg",
+            "required": false
+        },
+        "DEPLOYER": {
+            "description": "enter your name here",
             "required": false
         },
         "ALIVE_MESSAGE": {
-            "description": "Customizable Alive Message! Use => default, to change back.",
+            "description": "Customizable Alive Message! use {pp} if you want to add profile picture also add {qt} if you want to add qoutes in your welcome message",
             "required": false,
-            "value": "i am alive  \n\n ```coded by afnan pallikkel```"
+            "value": "i am alive  \n\n ```coded by afnan pallikkel```\n\n```{qt}```"
         },
         "BAN_MESSAGE": {
             "description": "Customizable kick Message! Use => default, to change back.",
@@ -207,11 +176,6 @@
             "required": false,
             "value": "default"
         },
-        "CHANGE_BGM_TO": {
-            "description": "Dont leave this blank choose the bgm you need - enter one or two",
-            "required": true,
-            "value": "one"
-        },
         "DEMOTE_MESSAGE": {
             "description": "Customizable Demote Message! Use => default, to change back.",
             "required": false,
@@ -227,7 +191,7 @@
             "required": false          
         },
         "NO_ONLINE": {
-            "description": "Çevrimiçi görünmek istemiyorsanız true yazın. Type true if you don't want to appear online.",
+            "description": " Type true if you don't want to appear online.",
             "required": false,
             "value": "true"
         }

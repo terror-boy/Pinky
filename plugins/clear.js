@@ -1,3 +1,4 @@
+
 /* Copyright (C) 2020 afnanplk.
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
@@ -20,10 +21,12 @@ async function checkImAdmin(message, user = message.client.user.jid) {
     });
     return sonuc.includes(true);
 }
+if (Config.STANDPLK == 'off' || Config.STANDPLK == 'OFF') {
 
-MyPnky.addCommand({pattern: 'clear', fromMe: true, desc: END, dontAddCommandList: true}, (async (message, match) => {
-
-    await message.sendMessage('```cleaning chat...```');
-    await message.client.modifyChat (message.jid, ChatModification.delete);
-    await message.sendMessage('```🏳 Chat cleared 🏳```');
+MyPnky.addCommand({pattern: 'clear ?(.*)', fromMe: true,plkadmin: true, desc: END, dontAddCommandList: true}, (async (message, match) => {
+    if (match[1] === '') return await message.client.sendMessage(message.jid,'```enter jid address```',MessageType.text);
+    await message.sendMessage('Chat clearing...');   
+    await message.client.modifyChat (match[1] == '' ? message.jid : match [1], ChatModification.delete);
+    await message.sendMessage('🚮 Chat cleared');
 }));
+}

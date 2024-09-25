@@ -24,8 +24,10 @@ const { successfullMessage, errorMessage, infoMessage } = require('../helpers');
 const NotesDB = require('./sql/notes');
 const Language = require('../language')
 const Lang = Language.getString('notes')
+const Config = require('../config');
 
-MyPnky.addCommand({ pattern: 'notes', fromMe: true, desc: Lang.NOTES_USAGE }, async (message, match) => {
+if (Config.STANDPLK == 'off' || Config.STANDPLK == 'OFF') {
+MyPnky.addCommand({ pattern: 'notes', fromMe: true,plkadmin: true,dontAddCommandList: true, desc: Lang.NOTES_USAGE }, async (message, match) => {
 
 
     const _notes = await NotesDB.getNotes()
@@ -54,7 +56,7 @@ MyPnky.addCommand({ pattern: 'notes', fromMe: true, desc: Lang.NOTES_USAGE }, as
 
 
 
-MyPnky.addCommand({ pattern: 'save ?(.*)', fromMe: true, desc: Lang.SAVE_USAGE }, async (message, match) => {
+MyPnky.addCommand({ pattern: 'save ?(.*)', fromMe: true,plkadmin: true,dontAddCommandList: true, desc: Lang.SAVE_USAGE }, async (message, match) => {
 
     const userNote = match[1]
 
@@ -102,7 +104,7 @@ MyPnky.addCommand({ pattern: 'save ?(.*)', fromMe: true, desc: Lang.SAVE_USAGE }
     }
 })
 
-MyPnky.addCommand({ pattern: 'deleteNotes', fromMe: true, desc: Lang.DELETE_USAGE }, async (message, match) => {
+MyPnky.addCommand({ pattern: 'deleteNotes', fromMe: true,plkadmin: true,dontAddCommandList: true, desc: Lang.DELETE_USAGE }, async (message, match) => {
 
     await NotesDB.deleteAllNotes()
 
@@ -114,4 +116,4 @@ MyPnky.addCommand({ pattern: 'deleteNotes', fromMe: true, desc: Lang.DELETE_USAG
 
     return await message.sendMessage(successfullMessage(Lang.SUCCESSFULLY_DELETED))
 })
-
+}
